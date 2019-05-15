@@ -1,95 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Eventbrite Like-like</title>
-
-  <!-- Link for bootstrap -->
-  <link rel="stylesheet" href="styles/bootstrap.css" class="css">
-
-  <!-- Custom stylesheet -->
-  <link rel="stylesheet" href="styles/custom.css" class="css">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-
-</head>
-<body>
-
-  <div class="container">
-    <div class="row mt-4">
-      <div class="col">
-        <small><a href="index.html">< Back to Menu</a></small>
-        <h1>Resource page</h1>
+<div class="container mt-4">
+ <div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-8 event-header">
+      <%= image_tag @event.picture, alt: 'picture', class: "card-img" %>
+    </div>
+    <div class="col-md-4">
+      <div class="card-body">
+        <p class="card-text"><small class="text-muted"><%= @event.start_date %></small></p>
+        <h3 class="card-title"><%= @event.title %></h3>
+        <p class="card-text"><%=@event.description%></p>
+        <p class="card-text font-italic"><%= "Created by #{@event.admin.email}" %></p>
+        <h4 class="card-text"><%= @event.price %> €</h4>
       </div>
     </div>
   </div>
-
-<div class="container">
-   <div class="card mb-3">
-    <div class="row no-gutters">
-      <div class="col-md-8 event-header">
-        <img src="img/dj.jpg" class="card-img" alt="...">
-      </div>
-      <div class="col-md-4">
-        <div class="card-body">
-          <p class="card-text"><small class="text-muted">14th JULY</small></p>
-          <h3 class="card-title">EVENT TITLE</h3>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos modi nesciunt doloribus, consequatur velit sint autem consequuntur quam odio laborum similique, repellat nihil at tempore, dolorem omnis voluptate reiciendis veniam.</p>
-          <p class="card-text font-italic">Created by John Mekouyonsky</p>
-          <h4 class="card-text">Free</h4>
-        </div>
-      </div>
-    </div>
+</div>
+<div class="row">
+  <div class="col col-md-8">
+    <p class="event-icons"> <i class="fas fa-share-alt"></i>  <i class="fas fa-thumbs-up"></i></p>
   </div>
-  <div class="row">
-    <div class="col col-md-8">
-      <p class="event-icons"> <i class="fas fa-share-alt"></i>  <i class="fas fa-thumbs-up"></i></p>
-    </div>
-    <div class="col col-md-4">
-      <button type="button" class="btn btn-primary">Join Event</button>
-    </div>
+  <div class="col col-md-4">
+    <% if current_user %>
+    <% if @event.price > 0 %>
+    <% unless @event.admin == current_user || @event.is_coming?(current_user) %>
+    <p><%= link_to "Join this event", new_charge_path(id: @event.id), class: "btn btn-primary", role: "button" %></p>
+    <% end %>
+
+    <% else %>
+    <% unless @event.admin == current_user || @event.is_coming?(current_user) %>
+    <p><%= button_to 'Join free event', create_attendance_path(id: @event.id), class:"btn btn-success" %></p>
+    <% end %>
+    <% end %>
+    <% end %>
   </div>
-    <hr>
+</div>
+<hr>
 
-  <div class="row mt-4">
-    <div class="col col-md-8">
-      <h5>TITLE</h5>
+<div class="row mt-4">
+  <div class="col col-md-8">
+    <h5><%= @event.title %></h5>
 
-        <div class="p text-justify">
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio numquam quibusdam odio quae consequuntur iusto reiciendis magnam vero mollitia aut. Quia asperiores cupiditate velit, soluta. Corporis quo sint recusandae voluptate.</div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet culpa id suscipit vitae, excepturi nam earum quidem, optio inventore nisi maxime labore perspiciatis cumque nostrum sapiente neque velit obcaecati. Nostrum.</div>
-        <div>Magni magnam beatae odit voluptate sint, debitis esse cum minus repellat error quae rerum at ad id, officia dolores cupiditate eum. Doloremque reprehenderit, soluta. Fuga voluptate alias optio quis perspiciatis.</div>
-        <div>Nostrum quos nisi, maxime odio vero vel molestias, commodi cupiditate culpa! Quidem sunt, sit provident sapiente itaque officiis molestiae quod quaerat velit consequatur, accusamus, necessitatibus debitis voluptas inventore soluta iste.</div>
-        <div>Laboriosam accusamus aliquid sunt optio porro ipsam atque nisi vel, saepe illo aperiam quaerat quam necessitatibus sapiente dolores repellat! Rem magni repellat dignissimos pariatur illo repellendus deserunt dolore dolor fugiat!</div>
-      </div>
+    <div class="p text-justify">
+      <%= @event.description %>
     </div>
-
+</div>
     <div class="col col-md-4">
       <h5>Date and time</h5>
-      <div class="p">14th of July </div>
-      <div class="p">8:00 - 00:00</div><br>
+      <div class="p"><%= @event.start_date %> </div><br>
       
       <h5>ADDRESS</h5>
-      <p>Place Bellecour</p>
-      <p>69002 Lyon</p>
+      <p><%= @event.location %></p>
+      
+
+      <% if current_user %>
+      <% if @event.admin == current_user %>
+      <p><%= link_to "Your event", attendances_path(id: @event.id), class: "btn btn-primary", role: "button" %></p>
+      <% end %>
+      <% end %>
     </div>
- </div>
- <hr>
- <div class="row">
-  <div class="col">
-   <p class="event-icons"><i class="fab fa-twitter"></i> <i class="fab fa-facebook-square"></i> <i class="fab fa-instagram"></i></p>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col">
+     <p class="event-icons"><i class="fab fa-twitter"></i> <i class="fab fa-facebook-square"></i> <i class="fab fa-instagram"></i></p>
    </div>
  </div>
 </div>
 
 
 
-<!--JAVASCRIPT -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-
-</body>
-</html>
