@@ -1,0 +1,21 @@
+<div class="container mt-4">
+  <div class="row"> 
+    <div class="col">
+      <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0">Attendees list</h6>
+        <% user_list = @event.users %> 
+        <% user_list.each do |user| %>
+        <div class="media text-muted pt-3">
+         <%= image_tag user.avatar %>
+          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark"><%= user.first_name %> <%= user.last_name %></strong>
+            Email: <%= user.email %>
+          </p>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -18,7 +18,7 @@ Event.destroy_all
 		description: Faker::Movie.quote, 
 		password: Faker::Internet.password
 	)	
-
+	puts 'user added'
 	@user.avatar.attach(io: File.open('app/assets/images/event.jpg'), filename: 'event.jpg')
 
 	@event = Event.new(
