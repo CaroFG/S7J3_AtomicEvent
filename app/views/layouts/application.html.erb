@@ -1,16 +1,7 @@
+<%= render 'layouts/header' %>
+<%= render 'layouts/flash'%>
 
-
-  <%= render 'layouts/header' %>
-  <%= render 'layouts/flash'%>
-
-
-  <!-- yield importe le contenu de la page depuis les différents fichiers de view correspondant
-  à la page à afficher. On prépare un container pour l'ensemble du contenu de la page via
-  Bootstrap -->
-  <%= yield %>
-
-
-
+<%= yield %>
 
 <%= render 'layouts/footer' %>
 
