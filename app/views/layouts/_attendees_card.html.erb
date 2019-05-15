@@ -6,7 +6,7 @@
         <% user_list = @event.users %> 
         <% user_list.each do |user| %>
         <div class="media text-muted pt-3">
-         <%= image_tag user.avatar %>
+         <%= image_tag user.avatar, alt: 'avatar', class: "mr-2 rounded avatar-img" %>
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <strong class="d-block text-gray-dark"><%= user.first_name %> <%= user.last_name %></strong>
             Email: <%= user.email %>
