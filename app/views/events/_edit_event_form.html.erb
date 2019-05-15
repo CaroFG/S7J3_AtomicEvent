@@ -1,0 +1,27 @@
+ <%= form_tag url_for(action: 'update'), method: "patch" do %>
+
+    <b><%= label_tag 'Start date' %></b>
+    <%= text_field_tag 'start_date', @event.start_date, class: "form-control" %>
+    <small id="emailHelp" class="form-text text-muted mb-3">Ex: 2019-12-02 12:00</small>
+
+    <b><%= label_tag 'Duration' %></b>
+    <%= text_field_tag 'duration', @event.duration, class: "form-control", placeholder: "Minutes"  %>
+    <small id="emailHelp" class="form-text text-muted mb-3">It must be a multiple of 5</small>
+
+    <b><%= label_tag 'Title' %></b>
+    <%= text_field_tag 'title', @event.title, class: "form-control"  %>
+    <small id="emailHelp" class="form-text text-muted mb-3">Between 5 and 140 characters</small>
+
+    <b><%= label_tag 'Description' %></b>
+    <%= text_area_tag 'description', @event.description, class: "form-control"  %>
+    <small id="emailHelp" class="form-text text-muted mb-3">Between 20 and 1000 characters</small>
+
+    <b><%= label_tag 'Price' %></b>
+    <%= text_field_tag 'price', @event.price, class: "form-control mb-3", placeholder: "€"  %>
+
+    <b><%= label_tag 'Location' %></b>
+    <%= text_field_tag 'location', @event.location, class: "form-control mb-3"  %>
+
+    <p> <%= submit_tag "Edit", class: "btn btn-primary mb-3" %> <%= link_to 'Delete', event_path(id: @event), method: :delete, data: { confirm: 'Are you sure?' } %> </p>
+
+<% end %>

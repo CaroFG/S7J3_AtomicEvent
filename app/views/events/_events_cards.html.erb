@@ -4,7 +4,7 @@
   <div class="row"> 
     <% events.each do |event|%>
     <% if event.validated == true %>
-    <div class="col col-4">
+    <div class="col col-4 mb-4">
      <div class="card">
        <%= image_tag event.picture, style: 'height: 200px; width: 100%; display: block', alt: 'picture', class: "img-thumbnail mb-3 img-fluid"%>
 

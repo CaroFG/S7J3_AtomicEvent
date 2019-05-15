@@ -21,7 +21,8 @@ class EventsController < ApplicationController
 			redirect_to root_path
 			flash[:success] = "Your event has been successfully created"
 		else
-			render 'new'
+			flash.now[:error] = @event.errors.full_messages.to_sentence
+			render :new
 		end
 	end
 
@@ -40,6 +41,7 @@ class EventsController < ApplicationController
 			redirect_to event_path
 			flash[:success] = "Your event has been successfully edited"
 		else
+			flash.now[:error] = @event.errors.full_messages.to_sentence
 			render :edit
 		end	
 	end
@@ -61,19 +63,19 @@ class EventsController < ApplicationController
 	end
 
 	def has_picture
-	if Event.picture.attached?
-		return true
-	else
-		render 'new'
-		flash[:alert] = "You must upload a picture"
+		if Event.picture.attached?
+			return true
+		else
+			render 'new'
+			flash[:alert] = "You must upload a picture"
+		end
 	end
-end
 
-def is_validated
-	@event = Event.find(params[:id])
-	if @event.validated != true
-		redirect_to root_path
-		flash[:alert] = "Your event hasn't been validated"
+	def is_validated
+		@event = Event.find(params[:id])
+		if @event.validated != true
+			redirect_to root_path
+			flash[:alert] = "Your event hasn't been validated"
+		end
 	end
-end
 end
