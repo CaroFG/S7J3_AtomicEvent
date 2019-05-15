@@ -1,0 +1,106 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+	position: relative;
+	min-height: 100%;
+}
+body {
+	margin-bottom: 126px; /* Margin bottom by footer height */
+}
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 96px; /* Set the fixed height of the footer here */
+	background-color: #f5f5f5;
+}
+
+ul {
+	list-style-type: none;
+	padding:0;
+}
+
+
+.footer i {
+	font-size:18px;
+}
+
+.jumbotron-home {
+	background: url('https://cdn.pixabay.com/photo/2015/12/08/00/29/northern-lights-1081752_960_720.jpg');
+	background-size: cover;
+	background-position: center center;
+	position: relative;
+
+}
+
+.jumbotron-events {
+	background: url('https://cdn.pixabay.com/photo/2018/05/10/11/34/concert-3387324_960_720.jpg');
+	background-size: cover;
+	background-position: center center;
+	position: relative;
+	text-shadow: 0px 0px 120px #171717;
+}
+
+.jumbotron-home hr {
+	background-color:white;
+}
+
+.overlay-container {
+	position:relative;
+	height:200px;
+	overflow: hidden;
+}
+
+.overlay-shadow {
+	position:absolute;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(25,25,25,0.3);
+}
+
+.overlay-text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.avatar-img {
+	width:32px;
+	height:32px;
+
+}
+
+.event-header {
+	height: 350px;
+	overflow: hidden;
+	position: relative;
+}
+
+.event-header img {
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%)
+}
+
+.event-icons {
+	font-size: 24px;
+}
+
+.site-element {
+	height: 350px;
+	overflow: hidden;
+	position: relative;
+}
+
+.site-element img{
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%)
+}

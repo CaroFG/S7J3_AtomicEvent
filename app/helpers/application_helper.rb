@@ -1,10 +1,10 @@
 module ApplicationHelper
-	def flash_class(level)
-   case level
-     when 'notice' then "alert alert-info alert-dismissible fade show "
-     when 'success' then "alert alert-success alert-dismissible fade show"
-     when 'error' then "alert alert-danger alert-dismissible fade show"
-     when 'alert' then "alert alert-warning alert-dismissible fade show"
-    end
-  end
+	def bootstrap_class_for_flash(type)
+		case type
+		when 'notice' then "alert-info"
+		when 'success' then "alert-success"
+		when 'error' then "alert-danger"
+		when 'alert' then "alert-warning"
+		end
+	end
 end

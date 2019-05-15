@@ -13,5 +13,4 @@
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
-//= require jquery/jquery.min
-//= require bootstrap/js/bootstrap.bundle.min
+

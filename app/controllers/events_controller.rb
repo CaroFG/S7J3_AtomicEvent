@@ -18,7 +18,7 @@ class EventsController < ApplicationController
 
 
 		if @event.save
-			redirect_to event_path(@event)
+			redirect_to root_path
 			flash[:success] = "Your event has been successfully created"
 		else
 			render 'new'
@@ -54,7 +54,7 @@ class EventsController < ApplicationController
 		@event = Event.find(params[:id])
 
 		if current_user != @event.admin
-			flash[:alert] = "Access denied"
+			flash[:alert] = "You are not the organizer of this event"
 			redirect_to event_path
 		end
 
@@ -73,7 +73,7 @@ def is_validated
 	@event = Event.find(params[:id])
 	if @event.validated != true
 		redirect_to root_path
-		flash[:alert] = "Access denied"
+		flash[:alert] = "Your event hasn't been validated"
 	end
 end
 end
