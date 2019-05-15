@@ -1,0 +1,14 @@
+<div class="col col-4 mx-auto">
+<h2> Events to validate </h2>
+
+<% @events.each do |e|%>
+	<% if e.validated == nil %>
+	<p>
+		<%= e.admin.first_name %>	
+		<%= e.admin.last_name %><br>	
+		<%= e.title %><br>
+		<%= link_to "View details", gods_event_path(e.id) %>
+	</p>
+	<% end%>
+<% end%>
+</div>

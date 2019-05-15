@@ -1,0 +1,25 @@
+<div class="col col-6 mx-auto">
+<h2> Users </h2>
+<p><%= link_to "Create a user", new_gods_user_path %></p>
+<% @users.order(created_at: :asc).each do |u| %>
+<p>
+<%= "ID: #{u.id}" %><br>
+<%= "Full name: #{u.first_name}" %>
+<%= "#{u.last_name}" %> <br>
+<%= "Email: #{u.email}" %> <br>
+<%= "God: #{u.is_god}" %> <br>
+<%= "Description: #{u.description}" %> <br>
+<span> Events :</span> <br>
+<% i = 1 %>
+<% events = Event.where(admin_id: u.id) %>
+	<% events.each do |e| %>
+		<%="#{i}. #{e.title}" %><br>
+		<% i += 1 %>
+	<% end %>
+	<%= link_to "Edit", edit_gods_user_path(u.id) %>
+	<%= link_to 'Delete', gods_user_path(u.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+</p>
+<% end %> 
+</div> 
+
+
