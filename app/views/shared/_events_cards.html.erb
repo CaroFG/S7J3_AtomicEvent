@@ -2,21 +2,19 @@
   <div class="row"> 
     <% events.each do |event|%>
     <% if event.validated == true %>
-    <div class="col col-4 mb-4">
-     <div class="card">
+    <div class="col col-4">
+      <div class="card card-h455 mb-4">
        <%= image_tag event.picture, style: 'height: 200px; width: 100%; display: block', alt: 'picture', class: "img-thumbnail mb-3 img-fluid"%>
-
-      <div class="card-body">
-        <h4 class="card-title"><%= event.title %></h4>
+       <div class="card-body">
+        <h4 class="card-title"><%= truncate(event.title, length: 60) %></h4>
         <h6 class="card-subtitle mb-2 text-muted"><%= event.start_date %><br>
           <%= event.location %></h6>
-        <p class="card-text"><%= event.description %></p>
-        <%= link_to "View details", event_path(event), class: "card-link" %>
+          <p class="card-text"><%= truncate(event.description, length: 60) %></p>
+          <%= link_to "View details", event_path(event), class: "card-link link-bottom" %>
+        </div>
       </div>
     </div>
+    <% end %>
+    <% end %>
   </div>
-  <% end %>
-  <% end %>
 </div>
-</div>
-
