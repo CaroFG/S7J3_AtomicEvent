@@ -1,9 +1,3 @@
 <%= render 'banner' %>
 
-<%= render 'events_cards'%>
-
-
-
-
-
-
+<%= render partial: 'shared/events_cards', locals: {events: Event.all.reverse}%>

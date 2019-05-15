@@ -50,6 +50,8 @@
       
       <h5>ADDRESS</h5>
       <p><%= @event.location %></p>
+      <h5>PEOPLE ATTENDING</h5>
+      <p><%= @event.users.count %></p>
       
 
       <% if current_user %>
